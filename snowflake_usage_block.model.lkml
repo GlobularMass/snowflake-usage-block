@@ -1,4 +1,4 @@
-connection: "account_usage"
+connection: "snowflake_heap_scratch"
 
 # include all the views
 include: "*.view"
