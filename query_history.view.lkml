@@ -27,6 +27,11 @@ view: query_history {
 #     sql: ${TABLE}.DATABASE_ID ;;
 #   }
 
+  dimension: schema_name {
+    type:  string
+    sql:  ${TABLE}.SCHEMA_NAME ;;
+  }
+
   dimension: database_name {
     type: string
     sql: ${TABLE}.DATABASE_NAME ;;
@@ -267,6 +272,34 @@ view: query_history {
     group_label: "Runtime Metrics"
     filters: {field: is_prior_month_mtd value: "yes"}
     value_format_name: decimal_2
+  }
+
+  measure: total_bytes_scanned {
+    type: sum
+    group_label: "IO Metrics"
+    sql: ${TABLE}.BYTES_SCANNED ;;
+    value_format_name:  decimal_0
+  }
+
+  measure: avg_bytes_scanned {
+    type: average
+    group_label: "IO Metrics"
+    sql: ${TABLE}.BYTES_SCANNED ;;
+    value_format_name:  decimal_2
+  }
+
+  measure: total_bytes_written {
+    type: sum
+    group_label: "IO Metrics"
+    sql: ${TABLE}.BYTES_WRITTEN ;;
+    value_format_name:  decimal_0
+  }
+
+  measure: avg_bytes_written {
+    type: average
+    group_label: "IO Metrics"
+    sql: ${TABLE}.BYTES_WRITTEN ;;
+    value_format_name:  decimal_2
   }
 
   # ----- Sets of fields for drilling ------
